@@ -1,5 +1,5 @@
 {
-  "name": "@pikelee/set-proxy",
+  "name": "@pikilee/set-proxy",
   "version": "0.0.1",
   "description": "Run commands with `http_proxy` and `https_proxy` set to the value you specified automatically.",
   "main": "dist/src/index.js",
