@@ -24,7 +24,7 @@ const file = join(__dirname, 'db.json')
 const adapter = new JSONFile<Data>(file)
 const db = new Low(adapter)
 await db.read()
-db.data ||= { proxy: '127.0.0.1:7890' }
+db.data ||= { proxy: 'http://127.0.0.1:7890' }
 
 const agrv = minimist(process.argv.slice(2))
 
