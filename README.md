@@ -2,7 +2,7 @@ Run commands with `http_proxy` and `https_proxy` set to the value you specified 
 
 # Install
 ```
-npm install -g @pikilee/set-proxy
+npm install -g @piki.me/set-proxy
 ```
 
 # Usage
