@@ -18,7 +18,14 @@
   "files": [
     "dist/src/*"
   ],
-  "keywords": [],
+  "keywords": [
+    "http_proxy",
+    "https_proxy",
+    "proxy",
+    "command",
+    "命令",
+    "代理"
+  ],
   "author": "Piki Lee",
   "license": "MIT",
   "devDependencies": {
