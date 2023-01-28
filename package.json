@@ -1,7 +1,7 @@
 {
-  "name": "set-proxy",
+  "name": "@pikelee/set-proxy",
   "version": "0.0.1",
-  "description": "",
+  "description": "Run commands with `http_proxy` and `https_proxy` set to the value you specified automatically.",
   "main": "dist/src/index.js",
   "type": "module",
   "packageManager": "pnpm@7.26.1",
@@ -19,7 +19,7 @@
     "dist/src/*"
   ],
   "keywords": [],
-  "author": "",
+  "author": "Piki Lee",
   "license": "MIT",
   "devDependencies": {
     "@types/minimist": "^1.2.2",
@@ -35,5 +35,17 @@
     "lowdb": "^5.0.5",
     "minimist": "^1.2.7",
     "picocolors": "^1.0.0"
-  }
+  },
+  "types": "./dist/src/index.d.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PikiLee/set-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PikiLee/set-proxy/issues"
+  },
+  "homepage": "https://github.com/PikiLee/set-proxy#readme"
 }
