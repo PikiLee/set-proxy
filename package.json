@@ -1,5 +1,5 @@
 {
-  "name": "package-name",
+  "name": "set-proxy",
   "version": "0.0.1",
   "description": "",
   "main": "dist/src/index.js",
@@ -12,13 +12,17 @@
     "build": "rimraf dist && tsc",
     "prepack": "pnpm run build"
   },
+  "bin": {
+    "sp": "dist/src/index.js"
+  },
   "files": [
     "dist/src/*"
   ],
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "@types/minimist": "^1.2.2",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.2",
     "eslint": "^8.32.0",
@@ -26,5 +30,10 @@
     "typescript": "^4.9.4",
     "vite": "^4.0.4",
     "vitest": "^0.27.2"
+  },
+  "dependencies": {
+    "lowdb": "^5.0.5",
+    "minimist": "^1.2.7",
+    "picocolors": "^1.0.0"
   }
 }
