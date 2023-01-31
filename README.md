@@ -5,7 +5,7 @@ Run commands with `http_proxy` and `https_proxy` set to the value you specified 
 npm install -g @piki.me/set-proxy
 ```
 
-# Usage
+# Example
 ```
 // set proxy, set-proxy would memorize this value
 sp proxy http://127.0.0.1:7890
