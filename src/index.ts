@@ -26,7 +26,8 @@ const db = new Low(adapter)
 await db.read()
 db.data ||= { proxy: 'http://127.0.0.1:7890' }
 
-const agrv = minimist(process.argv.slice(2))
+const rawArgvs = process.argv.slice(2)
+const agrv = minimist(rawArgvs)
 
 function execCallback(error: childProcess.ExecException | null, stdout: string | Buffer, stderr: string | Buffer) {
 	if (error) {
@@ -49,17 +50,26 @@ if (agrv._[0] === 'proxy') {
 		console.log(`Your proxy is ${db.data.proxy}`)
 	}
 }  else {
-	if (agrv._[0]) {
+	if (rawArgvs.length > 0) {
 		console.log(pc.yellow('----------------- set-proxy -----------------'))
-		console.log(`Running command: ${pc.blue(agrv._[0])} with http_proxy and https_proxy=${pc.blue(db.data.proxy)}`)
+		let command = ''
+
+		if (rawArgvs.length > 1) { // If the command not enclosed by qutation marks like sp curl google.com
+			command = rawArgvs.join(' ')
+		} else {	// If the command enclosed by qutation marks like sp "curl google.com"
+			command = agrv._[0]
+		}
+
+		console.log(`Running command: ${pc.blue(command)} with http_proxy and https_proxy=${pc.blue(db.data.proxy)}`)
 		console.log(pc.yellow('---------------------------------------------'))
-		await childProcess.exec(`${agrv._[0]}`, {
+		await childProcess.exec(command, {
 			env: {
 				...process.env,
 				'http_proxy': db.data.proxy,
 				'https_proxy': db.data.proxy
 			}
 		}, execCallback)
+		console.log(pc.yellow('---------------------------------------------'))
 	} else {
 		console.error('A command must be provided.')
 		console.log(`SYNOPSIS:

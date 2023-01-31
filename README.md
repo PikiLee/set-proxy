@@ -10,7 +10,12 @@ npm install -g @piki.me/set-proxy
 // set proxy, set-proxy would memorize this value
 sp proxy http://127.0.0.1:7890
 
+// show proxy
+sp proxy
+
 // run command
+sp curl https://www.google.com
+// or
 sp "curl https://www.google.com"
 ```
 
