@@ -5,7 +5,7 @@ import process from 'node:process'
 import childProcess from 'node:child_process'
 import pc from 'picocolors'
 
-// Remember to set type: module in package.json or use .mjs extension
+// json database
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
