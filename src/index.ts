@@ -61,7 +61,6 @@ if (agrv._[0] === 'proxy') {
 		}
 
 		console.log(`Running command: ${pc.blue(command)} with http_proxy and https_proxy=${pc.blue(db.data.proxy)}`)
-		console.log(pc.yellow('---------------------------------------------'))
 		await childProcess.exec(command, {
 			env: {
 				...process.env,
