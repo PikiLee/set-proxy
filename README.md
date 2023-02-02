@@ -1,5 +1,7 @@
 Run commands with `http_proxy` and `https_proxy` set to the value you specified automatically.
 
+[中文文档](./README_CHINESE.md)
+
 # Install
 ```
 npm install -g @piki.me/set-proxy
