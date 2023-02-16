@@ -2,8 +2,8 @@
 
 import minimist from 'minimist'
 import process from 'node:process'
-import childProcess from 'node:child_process'
 import pc from 'picocolors'
+import {execa, execaCommand} from 'execa'
 
 // json database
 import { join, dirname } from 'node:path'
@@ -29,19 +29,6 @@ db.data ||= { proxy: 'http://127.0.0.1:7890' }
 const rawArgvs = process.argv.slice(2)
 const agrv = minimist(rawArgvs)
 
-function execCallback(error: childProcess.ExecException | null, stdout: string | Buffer, stderr: string | Buffer) {
-	if (error) {
-		console.error(`exec error: ${error}`)
-		return
-	}
-	if (stdout) {
-		console.log(stdout)
-	}
-	if (stderr) {
-		console.error(stderr)
-	}
-}
-
 if (agrv._[0] === 'proxy') {
 	if (agrv._[1]) { // set proxy setting if a proxy is provided
 		db.data.proxy = agrv._[1]
@@ -61,14 +48,37 @@ if (agrv._[0] === 'proxy') {
 		}
 
 		console.log(`Running command: ${pc.blue(command)} with http_proxy and https_proxy=${pc.blue(db.data.proxy)}`)
-		await childProcess.exec(command, {
-			env: {
-				...process.env,
-				'http_proxy': db.data.proxy,
-				'https_proxy': db.data.proxy
-			}
-		}, execCallback)
 		console.log(pc.yellow('---------------------------------------------'))
+
+		let runningProcess
+		if (rawArgvs.length > 1) {
+			runningProcess = execa(rawArgvs[0], rawArgvs.slice(1), {
+				env: {
+					...process.env,
+					'http_proxy': db.data.proxy,
+					'https_proxy': db.data.proxy,
+				}
+			})
+		} else {
+			runningProcess = execaCommand(rawArgvs[0], {
+				env: {
+					...process.env,
+					'http_proxy': db.data.proxy,
+					'https_proxy': db.data.proxy,
+				}
+			})
+		}
+		
+		runningProcess.stdout?.pipe(process.stdout)
+		runningProcess.stderr?.pipe(process.stderr)
+		runningProcess.on('error', (error) => {
+			console.error(`Set-proxy Error: ${error}`)
+		})
+		runningProcess.on('close', (code) => {
+			if (code !== 0) {
+				console.log(`Command ${pc.blue(command)} exited with code ${code}`)
+			}
+		})
 	} else {
 		console.error('A command must be provided.')
 		console.log(`SYNOPSIS:
@@ -86,7 +96,7 @@ if (agrv._[0] === 'proxy') {
 		// run command
 		sp curl https://www.google.com
 		// or
-		sp "curl https://www.google.com"
+		sp "curl https://www.google.com" // use backslash for escaping if there are spaces in arguments
 `)
 	}
 }
