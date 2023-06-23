@@ -17,8 +17,6 @@ sp proxy
 
 // 运行命令
 sp curl https://www.google.com
-// 或者
-sp "curl https://www.google.com" // 如果命令参数里有空格使用反斜杠转义
 ```
 
 # 句法

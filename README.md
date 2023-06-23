@@ -17,8 +17,6 @@ sp proxy
 
 // run command
 sp curl https://www.google.com
-// or
-sp "curl https://www.google.com" // use backslash for escaping if there are spaces in arguments
 ```
 
 # SYNOPSIS
