@@ -8,7 +8,7 @@
     "lint": "eslint --cache --fix .",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build": "rimraf dist && tsc",
+    "build": "tsup-node",
     "prepack": "pnpm run build"
   },
   "bin": {
