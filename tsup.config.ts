@@ -5,4 +5,5 @@ export default defineConfig({
 	treeshake: true,
 	format: 'esm',
 	clean: true,
+	onSuccess: 'npm link'
 })
