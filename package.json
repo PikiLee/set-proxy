@@ -9,6 +9,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "tsup-node",
+    "dev": "npm link && tsup-node --watch",
     "prepack": "pnpm run build"
   },
   "bin": {
