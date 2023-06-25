@@ -1,6 +1,6 @@
 {
   "name": "@piki.me/set-proxy",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Run commands with `http_proxy` and `https_proxy` set to the value you specified automatically.",
   "main": "dist/index.js",
   "type": "module",
