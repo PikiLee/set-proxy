@@ -38,5 +38,6 @@ https_proxy -> ${pc.green(proxy)}`)
 			print(`Command ${pc.blue(command)} exited with code ${code}`)
 		}
 	})
+	if (runningProcess.stdin) process.stdin.pipe(runningProcess.stdin)
 }
 
